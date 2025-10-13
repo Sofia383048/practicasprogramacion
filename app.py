@@ -1,2 +1,2 @@
 import streamlit as st
-st.tittle("mi aplicacion para calcular el area de un circulo")
+st.title("mi aplicacion para calcular el area de un circulo")
