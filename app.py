@@ -3,7 +3,7 @@ import math
 
 # Título y descripción
 st.title("Mi aplicacion para calcular el area y perímetro de figuras geométricas")
-st.subtitle("Cálculo del área de un círculo")
+st.title("Cálculo del área de un círculo")
 st.latex("A = \\pi r^2")
 
 # Entrada de datos
