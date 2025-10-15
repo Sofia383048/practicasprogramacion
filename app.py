@@ -1,103 +1,124 @@
 import streamlit as st
 import math
+import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.patches import Circle, Rectangle, Polygon
 
-# Título principal
-st.title("📐 Mi aplicación para calcular el área y perímetro de figuras geométricas")
-
-# Selección de figura
-figura = st.selectbox(
-    "Selecciona una figura:",
-    ("Círculo", "Triángulo", "Rectángulo", "Cuadrado")
+st.set_page_config(
+    page_title="Cálculo de área y perímetro",
+    page_icon="📐",
+    layout="wide"
 )
 
-# Color de la figura
-color = st.color_picker("Elige un color para la figura:", "#1f77b4")
+with st.sidebar:
+    st.title("Información del alumno")
+    st.write("**Nombre:** Sofía Fernanda Lechuga Chávez")
+    st.write("**Matrícula:** 385858")
+    st.markdown("---")
+    st.write("Aplicación hecha con ❤️ en Streamlit")
+    st.image("https://static.streamlit.io/examples/dice.jpg", caption="Programación")
 
-# --- Cálculo según figura seleccionada ---
+
+st.title("📏 Cálculo de área y perímetro de figuras geométricas")
+
+
+figura = st.selectbox(
+    "Selecciona una figura geométrica:",
+    ["Círculo", "Triángulo", "Rectángulo", "Cuadrado"]
+)
+
 if figura == "Círculo":
-    st.header("🔵 Círculo")
-    st.latex("A = \\pi r^2 \\quad\\text{y}\\quad P = 2\\pi r")
-    radio = st.slider("Selecciona el radio (r):", 0.0, 20.0, 5.0)
+    radio = st.slider("Selecciona el radio", 0.0, 50.0, 10.0)
     area = math.pi * radio**2
     perimetro = 2 * math.pi * radio
-    st.success(f"Área = {area:.2f} unidades²")
-    st.success(f"Perímetro = {perimetro:.2f} unidades")
+    st.success(f"🔹 Área: {area:,.2f}")
+    st.success(f"🔹 Perímetro: {perimetro:,.2f}")
 
-    # Gráfico
+    st.subheader("Visualización del círculo")
     fig, ax = plt.subplots()
-    circle = Circle((0, 0), radio, edgecolor=color, facecolor='none', linewidth=2)
+    circle = Circle((0, 0), radio, fill=False, color="lime", linewidth=2)
     ax.add_patch(circle)
-    ax.set_xlim(-radio * 1.3, radio * 1.3)
-    ax.set_ylim(-radio * 1.3, radio * 1.3)
     ax.set_aspect('equal')
-    ax.set_title("Visualización del círculo")
+    ax.set_xlim(-radio*1.2, radio*1.2)
+    ax.set_ylim(-radio*1.2, radio*1.2)
+    ax.axis('off')
     st.pyplot(fig)
 
 elif figura == "Triángulo":
-    st.header("🔺 Triángulo")
-    st.latex("A = \\frac{b \\cdot h}{2}")
-    base = st.number_input("Base (b):", min_value=0.0, value=5.0)
-    altura = st.number_input("Altura (h):", min_value=0.0, value=4.0)
-    lado1 = st.number_input("Lado 1:", min_value=0.0, value=3.0)
-    lado2 = st.number_input("Lado 2:", min_value=0.0, value=4.0)
-    lado3 = st.number_input("Lado 3:", min_value=0.0, value=5.0)
+    base = st.slider("Base", 0.0, 50.0, 10.0)
+    altura = st.slider("Altura", 0.0, 50.0, 8.0)
+    lado1 = st.number_input("Lado 1:", 0.0, 50.0, 10.0)
+    lado2 = st.number_input("Lado 2:", 0.0, 50.0, 10.0)
+    lado3 = st.number_input("Lado 3:", 0.0, 50.0, 10.0)
     area = (base * altura) / 2
     perimetro = lado1 + lado2 + lado3
-    st.success(f"Área = {area:.2f} unidades²")
-    st.success(f"Perímetro = {perimetro:.2f} unidades")
+    st.success(f"🔹 Área: {area:,.2f}")
+    st.success(f"🔹 Perímetro: {perimetro:,.2f}")
 
-    # Gráfico (triángulo isósceles centrado)
+    st.subheader("Visualización del triángulo")
     fig, ax = plt.subplots()
     puntos = [[0, 0], [base, 0], [base / 2, altura]]
-    triangulo = Polygon(puntos, edgecolor=color, facecolor='none', linewidth=2)
+    triangulo = Polygon(puntos, edgecolor='lime', facecolor='none', linewidth=2)
     ax.add_patch(triangulo)
     ax.set_xlim(-1, base + 1)
     ax.set_ylim(-1, altura + 1)
-    ax.set_aspect('equal')
-    ax.set_title("Visualización del triángulo")
+    ax.axis('off')
     st.pyplot(fig)
 
 elif figura == "Rectángulo":
-    st.header("🟥 Rectángulo")
-    st.latex("A = b \\cdot h \\quad\\text{y}\\quad P = 2(b+h)")
-    base = st.number_input("Base (b):", min_value=0.0, value=6.0)
-    altura = st.number_input("Altura (h):", min_value=0.0, value=3.0)
+    base = st.slider("Base", 0.0, 50.0, 12.0)
+    altura = st.slider("Altura", 0.0, 50.0, 6.0)
     area = base * altura
     perimetro = 2 * (base + altura)
-    st.success(f"Área = {area:.2f} unidades²")
-    st.success(f"Perímetro = {perimetro:.2f} unidades")
+    st.success(f"🔹 Área: {area:,.2f}")
+    st.success(f"🔹 Perímetro: {perimetro:,.2f}")
 
-    # Gráfico
+    st.subheader("Visualización del rectángulo")
     fig, ax = plt.subplots()
-    rect = Rectangle((0, 0), base, altura, edgecolor=color, facecolor='none', linewidth=2)
+    rect = Rectangle((0, 0), base, altura, fill=False, color="lime", linewidth=2)
     ax.add_patch(rect)
     ax.set_xlim(-1, base + 1)
     ax.set_ylim(-1, altura + 1)
-    ax.set_aspect('equal')
-    ax.set_title("Visualización del rectángulo")
+    ax.axis('off')
     st.pyplot(fig)
 
 elif figura == "Cuadrado":
-    st.header("⬛ Cuadrado")
-    st.latex("A = l^2 \\quad\\text{y}\\quad P = 4l")
-    lado = st.slider("Selecciona el lado (l):", 0.0, 20.0, 5.0)
+    lado = st.slider("Selecciona el lado", 0.0, 50.0, 10.0)
     area = lado**2
     perimetro = 4 * lado
-    st.success(f"Área = {area:.2f} unidades²")
-    st.success(f"Perímetro = {perimetro:.2f} unidades")
+    st.success(f"🔹 Área: {area:,.2f}")
+    st.success(f"🔹 Perímetro: {perimetro:,.2f}")
 
-    # Gráfico
+    st.subheader("Visualización del cuadrado")
     fig, ax = plt.subplots()
-    cuadrado = Rectangle((0, 0), lado, lado, edgecolor=color, facecolor='none', linewidth=2)
+    cuadrado = Rectangle((0, 0), lado, lado, fill=False, color="lime", linewidth=2)
     ax.add_patch(cuadrado)
     ax.set_xlim(-1, lado + 1)
     ax.set_ylim(-1, lado + 1)
-    ax.set_aspect('equal')
-    ax.set_title("Visualización del cuadrado")
+    ax.axis('off')
     st.pyplot(fig)
 
-# Pie de página
 st.markdown("---")
-st.caption("Creado por Sofía Fernanda Lechuga Chávez — Programación 💻")
+st.header("📈 Funciones Trigonométricas")
+
+rango = st.slider("Rango (x)", 0.0, 10 * math.pi, 6.28)
+amplitud = st.slider("Amplitud", 0.1, 5.0, 1.0)
+
+x = np.linspace(0, rango, 1000)
+y_sin = amplitud * np.sin(x)
+y_cos = amplitud * np.cos(x)
+y_tan = amplitud * np.tan(x)
+
+fig, ax = plt.subplots()
+ax.plot(x, y_sin, label="sin(x)", color='orange')
+ax.plot(x, y_cos, label="cos(x)", color='cyan')
+
+mask = np.abs(y_tan) < 10
+ax.plot(x[mask], y_tan[mask], label="tan(x)", color='lime')
+ax.legend()
+ax.set_title("Funciones Trigonométricas")
+ax.grid(True)
+st.pyplot(fig)
+
+st.markdown("---")
+st.caption("Creado por Sofía Fernanda Lechuga Chávez — Programación")
