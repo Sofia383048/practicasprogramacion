@@ -118,5 +118,4 @@ ax.set_title("Funciones Trigonométricas")
 ax.grid(True)
 st.pyplot(fig)
 
-st.markdown("---")
-st.caption("Creado por Sofía Fernanda Lechuga Chávez — Programación")
+
