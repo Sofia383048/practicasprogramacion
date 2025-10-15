@@ -15,10 +15,8 @@ with st.sidebar:
     st.write("**Nombre:** Sofía Fernanda Lechuga Chávez")
     st.write("**Matrícula:** 385858")
     st.markdown("---")
-    st.write("Aplicación hecha con ❤️ en Streamlit")
-    st.image("https://static.streamlit.io/examples/dice.jpg", caption="Programación")
-
-
+    st.write("Aplicación hecha en Streamlit")
+    
 st.title("📏 Cálculo de área y perímetro de figuras geométricas")
 
 
