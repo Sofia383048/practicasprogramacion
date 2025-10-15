@@ -13,7 +13,7 @@ st.set_page_config(
 with st.sidebar:
     st.title("Información del alumno")
     st.write("**Nombre:** Sofía Fernanda Lechuga Chávez")
-    st.write("**Matrícula:** 385858")
+    st.write("**Matrícula:** 383048")
     st.markdown("---")
     st.write("Aplicación hecha en Streamlit")
     
