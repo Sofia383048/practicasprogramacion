@@ -14,8 +14,6 @@ with st.sidebar:
     st.title("Información del alumno")
     st.write("**Nombre:** Sofía Fernanda Lechuga Chávez")
     st.write("**Matrícula:** 383048")
-    st.markdown("---")
-    st.write("Aplicación hecha en Streamlit")
     
 st.title("📏 Cálculo de área y perímetro de figuras geométricas")
 
