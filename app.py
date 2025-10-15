@@ -2,8 +2,8 @@ import streamlit as st
 import math
 
 # Título y descripción
-st.title("🟢 Calculadora de Área de un Círculo")
-st.write("Esta aplicación calcula el área de un círculo usando la fórmula:")
+st.title("Mi aplicacion para calcular el area y perímetro de figuras geométricas")
+st.subtitle("Cálculo del área de un círculo")
 st.latex("A = \\pi r^2")
 
 # Entrada de datos
